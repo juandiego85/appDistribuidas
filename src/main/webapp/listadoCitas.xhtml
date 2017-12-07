@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body>
+
+<ui:composition template="template.xhtml">
+	
+	<ui:define name="pageTitle">Registrado</ui:define>
+	<ui:define name="pageTitle2">Cita Registrado</ui:define>
+	
+	<ui:define name="content">
+	<h:form>
+	
+		<h:dataTable value="#{citabean.listaCita}" var="citaX" columns="5" border="1" class="table table-striped table-hover table-bordered">
+			<f:facet name="header">	Citas Registrados </f:facet>
+			<h:column>
+			<f:facet name="header">	Fecha Cita </f:facet>
+			#{citaX.citFecha}
+			</h:column>
+			
+			<h:column>
+			<f:facet name="header">	Estado de la Cita </f:facet>
+			<h:outputLabel value="Activa" rendered="#{citaX.citEstado eq true}" />
+			<h:outputLabel value="Inactiva" rendered="#{citaX.citEstado eq false}"/>
+			</h:column>
+			
+			
+			<h:column>
+			<f:facet name="header">	Paciente </f:facet>
+			#{citaX.pacientepacid.usuario.usNombre}
+			</h:column>
+			<h:column>
+			<f:facet name="header">	Medico </f:facet>
+			#{citaX.medicomedid.usuario.usNombre}
+			</h:column>
+			<h:column>
+			<f:facet name="header">	Modificar </f:facet>
+			<h:commandButton action="#{citabean.actualizarCita(citaX)}" value="Editar" />
+			</h:column>
+			
+			<h:column>
+			<f:facet name="header">	Cancelar Cita</f:facet>
+		    <h:commandButton action="#{citabean.cancelarCita(citaX)}" value="Cancelar" />
+			</h:column>
+			<h:column>
+			<f:facet name="header">	Activar Cita</f:facet>
+		    <h:commandButton action="#{citabean.activarCita(citaX)}" value="Activar" />
+			</h:column>
+			<h:column>
+			<f:facet name="header">	Eliminar</f:facet>
+		    <h:commandButton action="#{citabean.eliminarCita(citaX)}" value="Eliminar" />
+			</h:column>
+		</h:dataTable>
+		<br />
+		
+	</h:form>
+	</ui:define>
+	
+</ui:composition>
+</body> 
+</html>

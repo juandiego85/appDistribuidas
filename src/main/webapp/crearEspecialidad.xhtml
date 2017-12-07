@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+ 
+<ui:composition template="template.xhtml">
+    <ui:define name="title">
+        Ingreso Especialidad
+    </ui:define>
+    <ui:define name="content">
+    	<br />
+    	<br />
+        <h:form id="formEspecialidad">
+			<h:panelGrid columns="3">            
+			
+				<h:outputLabel value="Especialidad:" class="control-label" />
+	            <h:inputText id="especialidad" value="#{especialidadbean.newEspecialidad.espnombreEspecialidad}" class="form-control" type="text" required="true">
+	            	<f:validateLength maximum="30" minimum="3"></f:validateLength>
+	            	<f:validateRegex pattern="[a-zA-Z]+"></f:validateRegex>
+	            </h:inputText>
+	            <h:messages for="especialidad" warnStyle=""/>
+	                  
+			</h:panelGrid>    
+			<br />                
+            <h:commandButton action="#{especialidadbean.guardarEspecialidad()}" value="Guardar Especialidad" class="btn btn-primary" id="guardarEspecialidad"/>
+            <h:message for="guardarEspecialidad"/>
+        </h:form>
+            <h:form>
+            <br />
+            <h:commandButton action="#{especialidadbean.verlistaEspecialidades()}" value="Listar Especialidad" class="btn btn-primary" id="listarEspecialidad"/>
+            <h:message for="listarEspecialidad"/>
+            
+        </h:form>
+       
+    </ui:define>
+ 
+</ui:composition>
+</html>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+ 
+<ui:composition template="template.xhtml">
+    <ui:define name="title">
+        Ingreso Cita
+    </ui:define>
+    <ui:define name="content">
+    	<br />
+    	<br />
+        <h:form id="formCita">
+        <h:messages />
+			<h:panelGrid columns="1">
+			    <h:outputLabel value="Fecha Cita: " />
+			    <h:inputText value="#{citabean.newCita.citFecha}" for="fecha">
+				    <f:convertDateTime pattern="yyyy-mm-dd"/>
+			    </h:inputText>
+			    <h:message  for="fecha"/> 
+	            	            
+				<h:outputLabel value="Pacientes:" />
+	            <h:selectOneMenu id="paciente" value="#{citabean.idPaciente}" class="combox">
+	            	<f:selectItems value= "#{pacientebean.listaPaciente}" var="pacienteX" itemLabel="#{pacienteX.usuario.usNombre}" itemValue="#{pacienteX.pacId}"/>
+	            </h:selectOneMenu> 
+	            
+	            <h:outputLabel value="Medicos:" />
+	            <h:selectOneMenu id="medico" value="#{citabean.idMedico}" class="combox">
+	            	<f:selectItems value= "#{medicobean.listaMedico}" var="medicoX" itemLabel="#{medicoX.usuario.usNombre}" itemValue="#{medicoX.medId}"/>
+	            </h:selectOneMenu> 
+	                        
+			</h:panelGrid>    
+			<br />                
+            <h:commandButton action="#{citabean.guardarCita()}" value="Guardar Cita" class="btn btn-primary" id="guardarCita"/>
+            <h:message for="guardarCita"/>
+        </h:form>
+        <h:form>
+            <br />
+            <h:commandButton action="#{citabean.verlistaCitas()}" value="Listar Cita" class="btn btn-primary" id="listarCita"/>
+            <h:message for="listarCita"/>
+            
+        </h:form>
+       
+    </ui:define>
+ 
+</ui:composition>
+</html>

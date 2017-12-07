@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body>
+
+<ui:composition template="template.xhtml">
+	
+	<ui:define name="pageTitle">Registrado</ui:define>
+	<ui:define name="pageTitle2">Medico Registrado</ui:define>
+	
+	<ui:define name="content">
+	<h:form>
+	
+		<h:dataTable value="#{medicobean.listaMedico}" var="medicoX" columns="5" border="1" class="table table-striped table-hover table-bordered">
+			<f:facet name="header">	Medicos Registrados </f:facet>
+			<h:column>
+			<f:facet name="header">	Cedula </f:facet>
+			#{medicoX.usuario.usCedula}
+			</h:column>
+			<h:column>
+			<f:facet name="header">	Nombre </f:facet>
+			#{medicoX.usuario.usNombre}
+			</h:column>
+			<h:column>
+			<f:facet name="header">	Apellidos </f:facet>
+			#{medicoX.usuario.usApellido}
+			</h:column>
+			<h:column>
+			<f:facet name="header">	Telefono </f:facet>
+			#{medicoX.usuario.usTelefono}
+			</h:column>
+			<h:column>
+			<f:facet name="header">	Correo </f:facet>
+			#{medicoX.usuario.usCorreo}
+			</h:column>
+			<h:column>
+			<f:facet name="header">	Esecialidad </f:facet>
+			#{medicoX.especialidad.espnombreEspecialidad}
+			</h:column>
+			<h:column>
+			<f:facet name="header">	Modificar </f:facet>
+			<h:commandButton action="#{medicobean.actualizarMedico(medicoX)}" value="Editar" />
+			</h:column>
+			<h:column>
+			<f:facet name="header">	Eliminar</f:facet>
+		    <h:commandButton action="#{medicobean.eliminarMedico(medicoX)}" value="Eliminar" />
+			</h:column>
+		</h:dataTable>
+		<br />
+		
+	</h:form>
+	</ui:define>
+	
+</ui:composition>
+</body> 
+</html>

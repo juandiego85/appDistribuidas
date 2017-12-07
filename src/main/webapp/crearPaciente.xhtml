@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+ 
+<ui:composition template="template.xhtml">
+    <ui:define name="title">
+        Ingreso Paciente
+    </ui:define>
+    <ui:define name="content">
+    	<br />
+    	<br />
+        <h:form id="formPaciente">
+        <h:messages />
+			<h:panelGrid columns="3">
+				<h:outputLabel value="Cedula:" class="control-label" />
+	            <h:inputText id="cedula" value="#{pacientebean.newUsuario.usCedula}" class="form-control" type="text" required="true">
+	            	<f:validateLength maximum="10" minimum="10"></f:validateLength>
+	            	<f:validateRegex pattern="[0-9]+" ></f:validateRegex>
+	            </h:inputText>
+	            <h:messages for="cedula" warnStyle=""/>	            
+			
+				<h:outputLabel value="Nombre:" class="control-label" />
+	            <h:inputText id="nom" value="#{pacientebean.newUsuario.usNombre}" class="form-control" type="text" required="true">
+	            	<f:validateLength maximum="30" minimum="3"></f:validateLength>
+	            	<f:validateRegex pattern="[a-zA-Z]+"></f:validateRegex>
+	            </h:inputText>
+	            <h:message for="nom" warnStyle="Escribir solo letras"/>
+	            
+	            <h:outputLabel value="Apellidos:" />
+	            <h:inputText id="ape" value="#{pacientebean.newUsuario.usApellido}" class="form-control"  pattern="[a-zA-Z]*" required="true">
+	            	<f:validateLength maximum="30" minimum="3"></f:validateLength>
+	            	<f:validateRegex pattern="[a-zA-Z]+"></f:validateRegex>
+	            </h:inputText>
+	            <h:messages for="ape" warnStyle=""/>
+	            
+	            <h:outputLabel value="Telefono:" />
+	            <h:inputText id="tel" value="#{pacientebean.newUsuario.usTelefono}" class="form-control" required="true">
+	            	<f:validateLength maximum="10" minimum="7"></f:validateLength>
+	            </h:inputText>
+	            <h:message for="tel" warnStyle=""/>
+	                        
+	            <h:outputLabel value="Correo:" />
+	            <h:inputText id="correo" value="#{pacientebean.newUsuario.usCorreo}" type="email" class="form-control"  placeholder="Enter email" required="true">
+	            	<f:validateLength maximum="30" minimum="1"></f:validateLength>
+	            	<f:validateRegex pattern="^[a-zA-Z0-9.!#$%'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" ></f:validateRegex>
+	            </h:inputText>
+	            <h:messages for="correo" warnStyle=""/>
+						                    
+	            <h:outputLabel value="Contraseña:" />
+	            <h:inputSecret id="contr" value="#{pacientebean.newUsuario.usClave}" type="password" name="pass" class="form-control"  required="true">
+	            	<f:validateLength maximum="15" minimum="8"></f:validateLength>
+	            	<f:validateRegex pattern="[A-Za-z0-9!?-]{8,15}"></f:validateRegex>
+	            </h:inputSecret>
+	            <h:messages for="contr" warnStyle=""/>
+	                      
+			</h:panelGrid>    
+			<br />                
+            <h:commandButton action="#{pacientebean.guardarPaciente()}" value="Guardar Paciente" class="btn btn-primary" id="guardarPaciente"/>
+            <h:message for="guardarPaciente"/>
+        </h:form>
+        <h:form>
+            <br />
+            <h:commandButton action="#{pacientebean.verlistaPaciente()}" value="Listar Paciente" class="btn btn-primary" id="listarPaciente"/>
+            <h:message for="listarPaciente"/>
+            
+        </h:form>
+       
+    </ui:define>
+ 
+</ui:composition>
+</html>
